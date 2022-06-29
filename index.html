@@ -22,8 +22,14 @@
         }
         function playerPlay(){
             var playerChoice = prompt ("What will you choose?: ");
-            playerChoiceLowerCase = playerChoice.toLowerCase();
-            return playerChoiceLowerCase;
+            if (choiceArray.includes(playerChoice)){
+                playerChoiceLowerCase = playerChoice.toLowerCase();
+                return playerChoiceLowerCase;
+            }
+            else{
+                alert("Choose Rock, Paper or Scissors!")
+                game();
+            }
         }
         function playRound(){
             const playerChoice = playerPlay()
@@ -38,30 +44,37 @@
             if (playerChoice === computerChoice) {winnerReport = 0}
 
             console.log("You chose " + playerChoice +". The computer chose " + computerChoice +". " + winnerReport + " to your score!");
-            //javaOutput.innerHTML = ("You chose " + playerChoice +". The computer chose " + computerChoice +". " + winnerReport + " to your score!");
+            javaOutput.innerHTML = ("You chose " + playerChoice +". The computer chose " + computerChoice +". " + winnerReport + " to your score!");
             return (winnerReport);
         }
         function game(){
             var score = 0
-            var numberOfRounds = prompt ("How many rounds would you like to play?: ")
+            var numberOfRounds = prompt ("New game! How many rounds would you like to play?: ")
+            console.log(isNaN(Number(numberOfRounds)));
             for (let i = 0; i < numberOfRounds; i++){
                 var result = playRound()
                 score = score + winnerReport;
                 console.log("Current score: " + score);
                 javaOutput.innerHTML = score;
             }
-            var finalResult;
+            var finalResult;S
             if (score>0){finalResult = "You won!"}
             if (score<0) {finalResult = "You lost!"}
             if (score===0) {finalResult = "A draw!"}
             console.log("End of the game! Your final score is: " + score + ". " + finalResult)
             javaOutput.innerHTML = ("End of the game! Your final score is: " + score + ". " + finalResult);
+
         }
 
     </script>
-    <div class=playButton>
-    <input id="Play!" type="button" value="Play!" onclick="game();">
-    <p id="javaOutput"></p>
+    <div class="container">
+        <div class="playButton">
+            <h1>Welcome to Rock, Paper, Scissors!</h1>
+        <input id="Play!" type="button" value="Play!" onclick="game();">
+        <p id="javaOutput"></p>
+        <p id="javaResult"></p>
+        </div>
     </div>
+    
 </body>
 </html>
