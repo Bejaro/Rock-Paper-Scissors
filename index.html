@@ -12,6 +12,7 @@
         var choiceArray = ["rock", "paper", "scissors"];
         var computerChoice;
         var playerChoice;
+        var htmlOutput = document.getElementById("javaOutput");
         const winMessage = "You win!"
         const loseMessage = "You lose!"
         const drawMessage = "A draw!"
@@ -37,6 +38,7 @@
             if (playerChoice === computerChoice) {winnerReport = 0}
 
             console.log("You chose " + playerChoice +". The computer chose " + computerChoice +". " + winnerReport + " to your score!");
+            //javaOutput.innerHTML = ("You chose " + playerChoice +". The computer chose " + computerChoice +". " + winnerReport + " to your score!");
             return (winnerReport);
         }
         function game(){
@@ -46,17 +48,20 @@
                 var result = playRound()
                 score = score + winnerReport;
                 console.log("Current score: " + score);
+                javaOutput.innerHTML = score;
             }
             var finalResult;
             if (score>0){finalResult = "You won!"}
             if (score<0) {finalResult = "You lost!"}
             if (score===0) {finalResult = "A draw!"}
             console.log("End of the game! Your final score is: " + score + ". " + finalResult)
+            javaOutput.innerHTML = ("End of the game! Your final score is: " + score + ". " + finalResult);
         }
 
     </script>
     <div class=playButton>
     <input id="Play!" type="button" value="Play!" onclick="game();">
+    <p id="javaOutput"></p>
     </div>
 </body>
 </html>
