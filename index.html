@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var choiceArray = ["Rock", "Paper", "Scissors"];
+        var computerChoice;
+        var playerChoice;
+        function computerPlay() {
+            var computerChoice = choiceArray[Math.floor(Math.random()*choiceArray.length)];
+            return computerChoice;
+        }
+        function playerPlay(){
+            var playerChoice = prompt ("What will you choose?: ");
+            return playerChoice;
+        }
+        function playRound(){
+            const playerChoice = playerPlay()
+            const computerChoice = computerPlay()
+            const winMessage = "You win!"
+            const loseMessage = "You lose!"
+            const drawMessage = "A draw!"
+            if (playerChoice == "Rock" && computerChoice == "Paper") {winnerReport = winMessage}
+            if (playerChoice == "Rock" && computerChoice == "Scissors") {winnerReport = loseMessage}
+            if (playerChoice == "Paper" && computerChoice == "Rock") {winnerReport = winMessage}
+            if (playerChoice == "Paper" && computerChoice == "Scissors") {winnerReport = loseMessage}
+            if (playerChoice == "Scissors" && computerChoice == "Paper") {winnerReport = winMessage}
+            if (playerChoice == "Scissors" && computerChoice == "Rock") {winnerReport = loseMessage}
+
+            console.log("You chose " + playerChoice +". The computer chose " + computerChoice +". " + winnerReport);
+        }
+
+    </script>
+</body>
+</html>
