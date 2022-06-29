@@ -5,36 +5,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <script>
-        var choiceArray = ["Rock", "Paper", "Scissors"];
+        var choiceArray = ["rock", "paper", "scissors"];
         var computerChoice;
         var playerChoice;
+        const winMessage = "You win!"
+        const loseMessage = "You lose!"
+        const drawMessage = "A draw!"
         function computerPlay() {
             var computerChoice = choiceArray[Math.floor(Math.random()*choiceArray.length)];
             return computerChoice;
         }
         function playerPlay(){
             var playerChoice = prompt ("What will you choose?: ");
-            return playerChoice;
+            playerChoiceLowerCase = playerChoice.toLowerCase();
+            return playerChoiceLowerCase;
         }
         function playRound(){
             const playerChoice = playerPlay()
             const computerChoice = computerPlay()
-            const winMessage = "You win!"
-            const loseMessage = "You lose!"
-            const drawMessage = "A draw!"
-            if (playerChoice == "Rock" && computerChoice == "Paper") {winnerReport = winMessage}
-            if (playerChoice == "Rock" && computerChoice == "Scissors") {winnerReport = loseMessage}
-            if (playerChoice == "Paper" && computerChoice == "Rock") {winnerReport = winMessage}
-            if (playerChoice == "Paper" && computerChoice == "Scissors") {winnerReport = loseMessage}
-            if (playerChoice == "Scissors" && computerChoice == "Paper") {winnerReport = winMessage}
-            if (playerChoice == "Scissors" && computerChoice == "Rock") {winnerReport = loseMessage}
+            
+            if (playerChoice == "rock" && computerChoice == "paper") {winnerReport = -1}
+            if (playerChoice == "rock" && computerChoice == "scissors") {winnerReport = +1}
+            if (playerChoice == "paper" && computerChoice == "rock") {winnerReport = +1}
+            if (playerChoice == "paper" && computerChoice == "scissors") {winnerReport = -1}
+            if (playerChoice == "scissors" && computerChoice == "paper") {winnerReport = +1}
+            if (playerChoice == "scissors" && computerChoice == "rock") {winnerReport = -1}
+            if (playerChoice === computerChoice) {winnerReport = 0}
 
-            console.log("You chose " + playerChoice +". The computer chose " + computerChoice +". " + winnerReport);
+            console.log("You chose " + playerChoice +". The computer chose " + computerChoice +". " + winnerReport + " to your score!");
+            return (winnerReport);
+        }
+        function game(){
+            var score = 0
+            var numberOfRounds = prompt ("How many rounds would you like to play?: ")
+            for (let i = 0; i < numberOfRounds; i++){
+                var result = playRound()
+                score = score + winnerReport;
+                console.log("Current score: " + score);
+            }
+            var finalResult;
+            if (score>0){finalResult = "You won!"}
+            if (score<0) {finalResult = "You lost!"}
+            if (score===0) {finalResult = "A draw!"}
+            console.log("End of the game! Your final score is: " + score + ". " + finalResult)
         }
 
     </script>
+    <div class=playButton>
+    <input id="Play!" type="button" value="Play!" onclick="game();">
+    </div>
 </body>
 </html>
