@@ -6,73 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <script>
-        var choiceArray = ["rock", "paper", "scissors"];
-        var computerChoice;
-        var playerChoice;
-        var htmlOutput = document.getElementById("javaOutput");
-        const winMessage = "You win!"
-        const loseMessage = "You lose!"
-        const drawMessage = "A draw!"
-        function computerPlay() {
-            var computerChoice = choiceArray[Math.floor(Math.random()*choiceArray.length)];
-            return computerChoice;
-        }
-        function playerPlay(){
-            var playerChoice = prompt ("What will you choose?: ");
-            if (choiceArray.includes(playerChoice)){
-                playerChoiceLowerCase = playerChoice.toLowerCase();
-                return playerChoiceLowerCase;
-            }
-            else{
-                alert("Choose Rock, Paper or Scissors!")
-                game();
-            }
-        }
-        function playRound(){
-            const playerChoice = playerPlay()
-            const computerChoice = computerPlay()
-            
-            if (playerChoice == "rock" && computerChoice == "paper") {winnerReport = -1}
-            if (playerChoice == "rock" && computerChoice == "scissors") {winnerReport = +1}
-            if (playerChoice == "paper" && computerChoice == "rock") {winnerReport = +1}
-            if (playerChoice == "paper" && computerChoice == "scissors") {winnerReport = -1}
-            if (playerChoice == "scissors" && computerChoice == "paper") {winnerReport = +1}
-            if (playerChoice == "scissors" && computerChoice == "rock") {winnerReport = -1}
-            if (playerChoice === computerChoice) {winnerReport = 0}
-
-            console.log("You chose " + playerChoice +". The computer chose " + computerChoice +". " + winnerReport + " to your score!");
-            javaOutput.innerHTML = ("You chose " + playerChoice +". The computer chose " + computerChoice +". " + winnerReport + " to your score!");
-            return (winnerReport);
-        }
-        function game(){
-            var score = 0
-            var numberOfRounds = prompt ("New game! How many rounds would you like to play?: ")
-            console.log(isNaN(Number(numberOfRounds)));
-            for (let i = 0; i < numberOfRounds; i++){
-                var result = playRound()
-                score = score + winnerReport;
-                console.log("Current score: " + score);
-                javaOutput.innerHTML = score;
-            }
-            var finalResult;S
-            if (score>0){finalResult = "You won!"}
-            if (score<0) {finalResult = "You lost!"}
-            if (score===0) {finalResult = "A draw!"}
-            console.log("End of the game! Your final score is: " + score + ". " + finalResult)
-            javaOutput.innerHTML = ("End of the game! Your final score is: " + score + ". " + finalResult);
-
-        }
-
-    </script>
     <div class="container">
         <div class="playButton">
             <h1>Welcome to Rock, Paper, Scissors!</h1>
-        <input id="Play!" type="button" value="Play!" onclick="game();">
-        <p id="javaOutput"></p>
-        <p id="javaResult"></p>
+            <button class="gameButton startButton" id="Play">Play</button>
+        </div>
+        <div class="choices hidden">
+            <div class="choiceBox" id="playerChoices">
+                <h2>Your selection</h2>
+                <button class="gameButton choiceButton" id="Rock">Rock</button>
+                <button class="gameButton choiceButton" id="Paper">Paper</button>
+                <button class="gameButton choiceButton" id="Scissors">Scissors</button>
+            </div>
+            <div class="choiceBox" id="computerChoices">
+                <h2>Their selection</h2>
+                <div class="enemyChoice" id="Rock">Rock</div>
+                <div class="enemyChoice" id="Paper">Paper</div>
+                <div class="enemyChoice" id="Scissors">Scissors</div>
+            </div>
+        </div>
+        <div class="output">
+            <p id="javaOutput"></p>
+            <p id="javaResult"></p>
         </div>
     </div>
     
